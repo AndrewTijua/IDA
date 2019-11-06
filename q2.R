@@ -42,8 +42,6 @@ cc_lm <- lm(data = databp_cc, recovtime ~ .)
 na_ind <- which(is.na(databp$recovtime))
 
 #complete case analysis
-databp <- subset(databp, select = -c(R))
-
 databp_cc <- databp[complete.cases(databp), ]
 
 

@@ -99,6 +99,7 @@ for (i in 1:length(na_ind)) {
     databp_cc$recovtime[which.min(sq_diff[[i]])]
 }
 
+#more efficient vectorised version of above
 databp_pmm_srnl$recovtime[na_ind] <- databp_cc$recovtime[to_select]
 
 

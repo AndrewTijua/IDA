@@ -120,3 +120,4 @@ sd(databp_ri_sr$recovtime) / sqrt(sum(!is.na(databp_ri_sr$recovtime)))
 sd(databp_sri_sr$recovtime) / sqrt(sum(!is.na(databp_sri_sr$recovtime)))
 sd(databp_pmm_sr$recovtime) / sqrt(sum(!is.na(databp_pmm_sr$recovtime)))
 sd(databp_pmm_srnl$recovtime) / sqrt(sum(!is.na(databp_pmm_srnl$recovtime)))
+

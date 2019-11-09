@@ -22,6 +22,18 @@
 \cfoot{Page \thepage}
 
 \begin{document}
+	
+\section{Question 1}
+
+The given missing data mechanism is that $Y_i$ is missing with probability $$P(R_i = 1|Y,Z) = \frac{\exp(Z_i)}{1+\exp(Z_i)},$$
+
+Where $R_i = 1$ indicates that $Y_i$ is missing. This is dependent only on $Z$, so may be rewritten as 
+
+$$P(R_i = 1|Z) = \frac{\exp(Z_i)}{1+\exp(Z_i)}.$$
+
+This demonstrates that the data is MCAR with respect to $Y$, as the missing data mechanism is independent of our data and the variable upon which the missingness is dependent is unobserved. This satisfies the prerequisites of an MCAR mechanism.
+
+If we are interested in $(Y,Z)$ then our missingness mechanism is MNAR. It is not MCAR as there is dependence on a variable in the data. It is not MAR as the variable upon which it depends has missing values (in fact all of the values are missing.) Hence it falls into the class of a missing not at random (MNAR) mechanism.
 
 \section{Question 2}
 
@@ -104,8 +116,6 @@ We use the command \texttt{set.seed(1)} to get reproducible results. Using this 
 		\hline 
 	\end{tabular} 
 \end{table}
-
-\pagebreak
 
 \subsection*{Predictive Mean Matching}
 

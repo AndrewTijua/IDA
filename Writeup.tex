@@ -31,7 +31,7 @@ Where $R_i = 1$ indicates that $Y_i$ is missing. This is dependent only on $Z$, 
 
 $$P(R_i = 1|Z) = \frac{\exp(Z_i)}{1+\exp(Z_i)}.$$
 
-This demonstrates that the data is MCAR with respect to $Y$, as the missing data mechanism is independent of our data and the variable upon which the missingness is dependent is unobserved. This satisfies the prerequisites of an MCAR mechanism.
+This demonstrates that the data is MCAR with respect to $Y$, as the missing data mechanism is independent of our data and the variable upon which the missingness is dependent is unobserved and is not in our dataset. This satisfies the prerequisites of an MCAR mechanism.
 
 If we are interested in $(Y,Z)$ then our missingness mechanism is MNAR. It is not MCAR as there is dependence on a variable in the data. It is not MAR as the variable upon which it depends has missing values (in fact all of the values are missing.) Hence it falls into the class of a missing not at random (MNAR) mechanism.
 
@@ -51,9 +51,9 @@ Performing the complete case analysis we obtain
 	\hline 
 	se($y$) & 2.603013\\ 
 	\hline 
-	logdose $\sim$ recovtime & 0.23912558\\ 
+	cor(logdose, recovtime) & 0.23912558\\ 
 	\hline 
-	bloodp $\sim$ recovtime & -0.01952862\\ 
+	cor(bloodp, recovtime) & -0.01952862\\ 
 	\hline 
 \end{tabular} 
 \end{table}
@@ -70,9 +70,9 @@ Performing mean imputation we obtain
 		\hline 
 		se($y$) & 2.28413\\ 
 		\hline 
-		logdose $\sim$ recovtime & 0.21506117\\ 
+		cor(logdose, recovtime) & 0.21506117\\ 
 		\hline 
-		bloodp $\sim$ recovtime & -0.01934126\\ 
+		cor(bloodp, recovtime) & -0.01934126\\ 
 		\hline 
 	\end{tabular} 
 \end{table}
@@ -89,9 +89,9 @@ Performing regression imputation we obtain
 		\hline 
 		se($y$) & 2.312845\\ 
 		\hline 
-		logdose $\sim$ recovtime & 0.2801835\\ 
+		cor(logdose, recovtime) & 0.2801835\\ 
 		\hline 
-		bloodp $\sim$ recovtime & -0.0111364\\ 
+		cor(bloodp, recovtime) & -0.0111364\\ 
 		\hline 
 	\end{tabular} 
 \end{table}
@@ -110,9 +110,9 @@ We use the command \texttt{set.seed(1)} to get reproducible results. Using this 
 		\hline 
 		se($y$) & 2.60018\\ 
 		\hline 
-		logdose $\sim$ recovtime & 0.24563681\\ 
+		cor(logdose, recovtime) & 0.24563681\\ 
 		\hline 
-		bloodp $\sim$ recovtime & -0.04772682\\ 
+		cor(bloodp, recovtime) & -0.04772682\\ 
 		\hline 
 	\end{tabular} 
 \end{table}
@@ -129,15 +129,15 @@ Performing predictive mean matching we obtain
 		\hline 
 		se($y$) & 2.464467\\ 
 		\hline 
-		logdose $\sim$ recovtime & 0.30379446\\ 
+		cor(logdose, recovtime) & 0.30379446\\ 
 		\hline 
-		bloodp $\sim$ recovtime & -0.03208685\\ 
+		cor(bloodp, recovtime) & -0.03208685\\ 
 		\hline 
 	\end{tabular} 
 \end{table}
 
 An advantage of predictive mean matching is that the imputed value is a definite possible value of the data. There are methods that work with categorical data, of which there are not any in the same vein as stochastic regression. 
 
-Some problems with predictive mean matching is that there is no mathematical theory justifying it. There is no concrete mathematical way of showing that it is valid in a given situation. It relies on MC simulation, which is inherently flawed in that it cannot explore all possibilities. Another is that the method implemented here chooses the nearest neighbour. The more accepted version randomly selects from $k$ nearest neighbours. This is not enough to produce proper imputation, leading to artificially low standard errors and inflated test statistics (in our case the Pearson correlation). 
+Some problems with predictive mean matching is that there is no mathematical theory justifying it. There is no concrete mathematical way of showing that it is valid in a given situation. It relies on MC simulation, which is inherently flawed in that it cannot explore all possibilities. Another is that the method implemented here chooses the nearest neighbour. The more accepted version randomly selects from $k$ nearest neighbours ($k$ is often selected as $5$ or $10$, depending on size of data set). This is not enough to produce proper imputation, leading to artificially low standard errors and inflated test statistics (in our case the Pearson correlation). 
 
 \end{document}

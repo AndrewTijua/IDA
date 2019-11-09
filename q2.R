@@ -45,13 +45,14 @@ cor(databp_pmm, method = "pearson")
 
 ##########
 
+databp_cc <- databp[complete.cases(databp),]
+
 cc_lm <-
   lm(data = databp_cc, recovtime ~ .) #standard behaviour in R is for lm to drop nas, this just makes it explicit
 
 na_ind <- which(is.na(databp$recovtime))
 
 #complete case analysis
-databp_cc <- databp[complete.cases(databp),]
 
 
 #mean imputation

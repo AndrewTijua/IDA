@@ -1,6 +1,8 @@
 #Q2 code
 library(mice)
 
+set.seed(1)
+
 load("databp.Rdata")
 
 #add means and standard error = sd/sqrt(n)

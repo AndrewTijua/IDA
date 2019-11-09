@@ -5,11 +5,13 @@
 \newtheorem{theorem}{Theorem}[section]
 
 \usepackage{graphicx}
+\usepackage{float}
 
 \usepackage[margin=1in]{geometry}
 
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
  
 \pagestyle{fancy}
 \fancyhf{}
@@ -20,6 +22,112 @@
 \cfoot{Page \thepage}
 
 \begin{document}
-fsi
+
+\section{Question 2}
+
+The code used for these analyses is available at \url{https://github.com/AndrewTijua/IDA}.
+
+\subsection*{Complete Case Analysis}
+
+Performing the complete case analysis we obtain 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+	\hline 
+	$\bar{y}$ & 19.27273\\ 
+	\hline 
+	se($y$) & 2.603013\\ 
+	\hline 
+	logdose $\sim$ recovtime & 0.23912558\\ 
+	\hline 
+	bloodp $\sim$ recovtime & -0.01952862\\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+\subsection*{Mean Imputation}
+
+Performing mean imputation we obtain 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline 
+		$\bar{y}$ & 19.27273\\ 
+		\hline 
+		se($y$) & 2.28413\\ 
+		\hline 
+		logdose $\sim$ recovtime & 0.21506117\\ 
+		\hline 
+		bloodp $\sim$ recovtime & -0.01934126\\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+
+\subsection*{Regression Imputation}
+
+Performing regression imputation we obtain 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline 
+		$\bar{y}$ & 19.44428\\ 
+		\hline 
+		se($y$) & 2.312845\\ 
+		\hline 
+		logdose $\sim$ recovtime & 0.2801835\\ 
+		\hline 
+		bloodp $\sim$ recovtime & -0.0111364\\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+
+\subsection*{Stochastic Regression Imputation}
+
+We note that the recovery time cannot be less than 0, so we must resample from our distribution if this occurs.
+
+We use the command \texttt{set.seed(1)} to get reproducible results. Using this we obtain
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline 
+		$\bar{y}$ & 19.75397\\ 
+		\hline 
+		se($y$) & 2.60018\\ 
+		\hline 
+		logdose $\sim$ recovtime & 0.24563681\\ 
+		\hline 
+		bloodp $\sim$ recovtime & -0.04772682\\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+
+\pagebreak
+
+\subsection*{Predictive Mean Matching}
+
+Performing predictive mean matching we obtain 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline 
+		$\bar{y}$ & 19.44\\ 
+		\hline 
+		se($y$) & 2.464467\\ 
+		\hline 
+		logdose $\sim$ recovtime & 0.30379446\\ 
+		\hline 
+		bloodp $\sim$ recovtime & -0.03208685\\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+
+An advantage of predictive mean matching is that the imputed value is a definite possible value of the data. There are methods that work with categorical data, of which there are not any in the same vein as stochastic regression. 
+
+Some problems with predictive mean matching is that there is no mathematical theory justifying it. There is no mathematical proof showing that it is valid in a given situation. It relies on MC simulation, which is inherently flawed in that it cannot explore all possibilities. Another is that the method implemented here chooses the nearest neighbour. The more accepted version randomly selects from $k$ nearest neighbours. This is not enough to produce proper imputation, leading to artificially low standard errors and inflated test statistics (in our case the Pearson correlation). 
 
 \end{document}

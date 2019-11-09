@@ -138,6 +138,6 @@ Performing predictive mean matching we obtain
 
 An advantage of predictive mean matching is that the imputed value is a definite possible value of the data. There are methods that work with categorical data, of which there are not any in the same vein as stochastic regression. 
 
-Some problems with predictive mean matching is that there is no mathematical theory justifying it. There is no mathematical proof showing that it is valid in a given situation. It relies on MC simulation, which is inherently flawed in that it cannot explore all possibilities. Another is that the method implemented here chooses the nearest neighbour. The more accepted version randomly selects from $k$ nearest neighbours. This is not enough to produce proper imputation, leading to artificially low standard errors and inflated test statistics (in our case the Pearson correlation). 
+Some problems with predictive mean matching is that there is no mathematical theory justifying it. There is no concrete mathematical way of showing that it is valid in a given situation. It relies on MC simulation, which is inherently flawed in that it cannot explore all possibilities. Another is that the method implemented here chooses the nearest neighbour. The more accepted version randomly selects from $k$ nearest neighbours. This is not enough to produce proper imputation, leading to artificially low standard errors and inflated test statistics (in our case the Pearson correlation). 
 
 \end{document}
